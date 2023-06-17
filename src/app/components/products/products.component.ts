@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 
 import {
@@ -10,6 +10,7 @@ import {
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -19,6 +20,7 @@ export class ProductsComponent {
   myShoppingCart: Product[] = [];
   total = 0;
   @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product | null = null;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
@@ -94,6 +96,10 @@ export class ProductsComponent {
         this.showProductDetail = false;
       });
     }
+  }
+
+  onLoadMore() {
+    this.loadMore.emit();
   }
 
   // loadMore() {

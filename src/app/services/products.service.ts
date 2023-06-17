@@ -27,6 +27,7 @@ export class ProductsService {
     }
     return this.http.get<Product[]>(`${this.apiUrl}/categories/${categoryId}/products`, { params });
   }
+  
 
   getAll(limit?: number, offset?: number) {
     let params = new HttpParams();

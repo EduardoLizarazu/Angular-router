@@ -23,19 +23,19 @@ export class CategoryComponent implements OnInit {
   ){ }
 
   ngOnInit(): void {
-      this.route.paramMap
-        .pipe(
-          switchMap(params => {
-            this.categoryId = params.get("id");
-            if (this.categoryId) {
-              return this.productsService.getByCategory(this.categoryId, this.limit, this.offset);
-            }
-            return [];
+    this.route.paramMap
+      .pipe(
+        switchMap(params => {
+          this.categoryId = params.get("id");
+          if (this.categoryId) {
+            return this.productsService.getByCategory(this.categoryId, this.limit, this.offset);
           }
-        ))
-        .subscribe(data => {
-          this.products = data;
-        });
+          return [];
+        }
+      ))
+      .subscribe(data => {
+        this.products = data;
+      });
   }
   // ngOnInit(): void {
   //     this.route.paramMap.subscribe(params => {

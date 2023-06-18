@@ -17,10 +17,19 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
+  @Input() products: Product[] = [];
+  // @Input() productId: string | null = null;
+  // Capture parameter dynamically
+  @Input()
+  set productId(id: string | null) {
+    if (id) {
+      this.onShowDetail(id);
+    }
+  }
+  @Output() loadMore = new EventEmitter();
+
   myShoppingCart: Product[] = [];
   total = 0;
-  @Input() products: Product[] = [];
-  @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product | null = null;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
@@ -43,7 +52,9 @@ export class ProductsComponent {
 
   onShowDetail(id: string) {
     this.statusDetail = 'loading';
-    this.toggleProductDetail();
+    if (!this.showProductDetail) {
+      this.showProductDetail = true;
+    }
     this.productsService.getOne(id).subscribe(
       (data) => {
         this.productChosen = data;

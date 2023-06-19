@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-import { HighlightDirective } from './directives/highlight.directive';
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
@@ -15,8 +14,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    HighlightDirective
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
